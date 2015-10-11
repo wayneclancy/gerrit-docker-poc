@@ -2,7 +2,7 @@
 
 
 This is a docker wrapper for docker-library/postgres and openfrontier/docker-gerrit. Both of which are availible as open souce.</br>
-Gerrit has its own docker storage volume. </br>,
+Gerrit has its own docker storage volume. </br>
 Postgres and Gerrit run on seperate containers with dedicated TCP postgres access on port 5432</br>
 There is a control shell script with various functions to manage day to day admin of the Gerrit service. This includes snapshotting.</br>
 
