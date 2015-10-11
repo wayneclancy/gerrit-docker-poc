@@ -26,14 +26,17 @@ getlogs() {
        docker logs pg-gerrit
        docker logs gerrit
 } 
+
 snapshot() {
        DATE=`date +%Y-%m-%d%H%M%S`
        docker commit -p gerrit waynec/gerrit-snapshot-$DATE
        docker commit -p pg-gerrit waynec/pg-gerrit-snapshot-$DATE
 } 
+
 listsnapshot() {
        docker images | grep snapshot
 }
+
 status() {
 	status=`curl -s --head http://127.0.0.1:8080 | head -n 1 | grep -c OK`
 	if [ $status -eq 1 ]
