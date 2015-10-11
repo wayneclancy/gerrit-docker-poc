@@ -25,7 +25,7 @@ You can use gerrit-pg-ctl.sh to create snapshots on demand</br>
 
 ./gerrit-pg-ctl.sh snapshot</br>
 
-This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots and corrisponding tags byy running</br>
+This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots and corrisponding tags by running</br>
 
 ./gerrit-pg-ctl.sh listsnapshots</br>
 waynec/pg-gerrit-snapshot	2015-10-11214308                 84ab6530248f        20 minutes ago      265.4 MB</br>
