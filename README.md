@@ -43,7 +43,7 @@ This restores the tag 2015-10-11214308 to latest.</br>
 
 This is a fairly basic script without any error checking etc. Its just used as a control script to make easy use of the dockerfiles.
 
-The wrapper script has the following option</br>
+The wrapper script has the following supported options</br>
 
 start: 		Start the Gerrit container service</br>
 stop:  		Snapshot image and Stop the Gerrit container servers</br>
@@ -55,7 +55,7 @@ logs:		Show docker logs from each instance</br>
 snapshot: 	Creates a timestamp based snapshot</br>
 listsnapshot:	List all snapshotss</br>
 status:		Checks if local Gerrit service is running on 8080</br>
-restore:        Restores a snapshot to latest and restarts the service</br>
+restore:        Restores a snapshot to latest and restarts the service (you need to proved a tag timestamp of a availiable image)</br>
 
 ##Todo
 
