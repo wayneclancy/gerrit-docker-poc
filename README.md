@@ -18,17 +18,26 @@ This will build docker-gerrit and docker/libary/postgres locally. Once this is c
 
 After around 10 seconds you should be able to access the gerrit server via http://127.0.0.1:8080</br>
  
-##Backup / Snapshotting
+##Backup / Snapshotting / Resoring
 
-You can use gerrit-pg-ctl.sh to create snapshots of both Postgres and Gerris</br>
+Snapshots are automatically taken when you stop the gerrit service. This is to ensure we don't loose any data</br>
+You can use gerrit-pg-ctl.sh to create snapshots on denad of both Postgres and Gerris</br>
 
 ./gerrit-pg-ctl.sh snapshot</br>
 
 This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots by running</br>
 
 ./gerrit-pg-ctl.sh listsnapshots</br>
-waynec/pg-gerrit-snapshot-2015-10-11214308   latest              84ab6530248f        20 minutes ago      265.4 MB</br>
-waynec/gerrit-snapshot-2015-10-11214308      latest              b2bc991843cb        20 minutes ago      413.6 MB</br>
+waynec/pg-gerrit-snapshot	2015-10-11214308                 84ab6530248f        20 minutes ago      265.4 MB</br>
+waynec/gerrit-snapshot		2015-10-11214308                 b2bc991843cb        20 minutes ago      413.6 MB</br>
+
+
+You can then restore a snapshot to latest but using the following command
+
+./gerrit-pg-ctl.sh restore 2015-10-11233600
+
+This restores the tag 2015-10-11214308 to latest.
+
 
 ## Misc
 
@@ -37,7 +46,7 @@ This is a fairly basic script without any error checking etc. Its just used as a
 The wrapper script has the following option</br>
 
 start: 		Start the Gerrit container service</br>
-stop:  		Stop the Gerrit container servers</br>
+stop:  		Snapshot image and Stop the Gerrit container servers</br>
 restart: 	Stop/start Gerris container server</br>
 reload: 	See restart </br>
 rebuild: 	Builds all docker images from source in wclancy/</br>
@@ -46,8 +55,9 @@ logs:		Show docker logs from each instance</br>
 snapshot: 	Creates a timestamp based snapshot</br>
 listsnapshot:	List all snapshotss</br>
 status:		Checks if local Gerrit service is running on 8080</br>
+restore:        Restores a snapshot to latest and restarts the service</br>
 
 ##Todo
 
-Add error checking and snapshot restore/tar export 
+Add error checking and snapshot tar export 
 

@@ -22,6 +22,15 @@ rebuild() {
        echo "Built all images and gerrit volume"
 }
 
+restore() {
+        if [ -z $2  ]; then
+           echo "You must provide a datestame: use $0 listsnapshots to obtains a tag you wish to restore"
+           exit 1 
+	fi 
+        docker tag -f  waynec/gerrit-snapshot:$2  waynec/gerrit:latest
+        docker tag -f  waynec/pg-gerrit-snapshot:$2 waynec/postgres:latest
+}
+
 getlogs() {
        docker logs pg-gerrit
        docker logs gerrit
@@ -29,8 +38,8 @@ getlogs() {
 
 snapshot() {
        DATE=`date +%Y-%m-%d%H%M%S`
-       docker commit -p gerrit waynec/gerrit-snapshot-$DATE
-       docker commit -p pg-gerrit waynec/pg-gerrit-snapshot-$DATE
+       docker commit -p gerrit waynec/gerrit-snapshot:$DATE
+       docker commit -p pg-gerrit waynec/pg-gerrit-snapshot:$DATE
 } 
 
 listsnapshot() {
@@ -90,6 +99,7 @@ case "$1" in
         start
         ;;
   stop)
+        snapshot
         stop
         ;;
   rebuild)
@@ -115,10 +125,14 @@ case "$1" in
   listsnapshots)
 	listsnapshot
 	;;
-	
+  restore)
+        restore $1 $2
+ 	stop 
+	start	
+        ;;	
        
   *)
-        echo $"Usage: $0 {start|stop|restart|reload|status|rebuild|destroy|logs|snapshot|listsnapshots}"
+        echo $"Usage: $0 {start|stop|restart|reload|status|rebuild|destroy|logs|snapshot|listsnapshos|restore}"
         exit 1
 esac
 exit 0
