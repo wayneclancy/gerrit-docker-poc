@@ -8,45 +8,46 @@ There is a control shell script with various functions to manage day to day admi
 
 ##Deployment
 
-All you need to do to get everything working once the code and been cloned on a local machine with docker installed is run the follow:
+All you need to do to get everything working once the code and been cloned on a local machine with docker installed is run the follow:</br>
 
-./gerrit-pg-ctl.sh rebuild
+./gerrit-pg-ctl.sh rebuild</br>
 
-This will build docker-gerrit and docker/libary/postgres locally. Once this is complete you can start the service with
+This will build docker-gerrit and docker/libary/postgres locally. Once this is complete you can start the service with</br>
 
-./gerrit-pg-ctl.sh start
+./gerrit-pg-ctl.sh start</br>
 
-After around 10 seconds you should be able to access the gerrit server via http://127.0.0.1:8080
+After around 10 seconds you should be able to access the gerrit server via http://127.0.0.1:8080</br>
  
 ##Backup / Snapshotting
 
-You can use gerrit-pg-ctl.sh to create snapshots of both Postgres and Gerris
+You can use gerrit-pg-ctl.sh to create snapshots of both Postgres and Gerris</br>
 
-./gerrit-pg-ctl.sh snapshot
+./gerrit-pg-ctl.sh snapshot</br>
 
-This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots by running
+This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots by running</br>
 
-./gerrit-pg-ctl.sh listsnapshots
-waynec/pg-gerrit-snapshot-2015-10-11214308   latest              84ab6530248f        20 minutes ago      265.4 MB
-waynec/gerrit-snapshot-2015-10-11214308      latest              b2bc991843cb        20 minutes ago      413.6 MB
+./gerrit-pg-ctl.sh listsnapshots</br>
+waynec/pg-gerrit-snapshot-2015-10-11214308   latest              84ab6530248f        20 minutes ago      265.4 MB</br>
+waynec/gerrit-snapshot-2015-10-11214308      latest              b2bc991843cb        20 minutes ago      413.6 MB</br>
 
 ## Misc
 
 This is a fairly basic script without any error checking etc. Its just used as a control script to make easy use of the dockerfiles.
 
-The wrapper script has the following option
+The wrapper script has the following option</br>
 
-start: 		Start the Gerrit container service
-stop:  		Stop the Gerrit container servers
-restart: 	Stop/start Gerris container server
-reload: 	See restart 
-rebuild: 	Builds all docker images from source in wclancy/
-destroy:        Removed the docker images from the service (use with caution) 
-logs:		Show docker logs from each instance
-snapshot: 	Creates a timestamp based snapshot
-listsnapshot:	List all snapshotss
+start: 		Start the Gerrit container service</br>
+stop:  		Stop the Gerrit container servers</br>
+restart: 	Stop/start Gerris container server</br>
+reload: 	See restart </br>
+rebuild: 	Builds all docker images from source in wclancy/</br>
+destroy:        Removed the docker images from the service (use with caution) </br>
+logs:		Show docker logs from each instance</br>
+snapshot: 	Creates a timestamp based snapshot</br>
+listsnapshot:	List all snapshotss</br>
+status:		Checks if local Gerrit service is running on 8080</br>
 
 ##Todo
 
-Add error checking and service health checks
+Add error checking and snapshot restore/tar export 
 
