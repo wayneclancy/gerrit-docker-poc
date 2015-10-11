@@ -1,10 +1,10 @@
 #Gerrit - Postgres Docker example
 
 
-This is a docker wrapper for docker-library/postgres and openfrontier/docker-gerrit. Both of which are availible as open souce.
-Gerrit has its own docker storage volume. 
-Postgres and Gerrit run on seperate containers with dedicated TCP postgres access on port 5432
-There is a control shell script with various functions to manage day to day admin of the Gerrit service. This includes snapshotting.
+This is a docker wrapper for docker-library/postgres and openfrontier/docker-gerrit. Both of which are availible as open souce.</br>
+Gerrit has its own docker storage volume. </br>,
+Postgres and Gerrit run on seperate containers with dedicated TCP postgres access on port 5432</br>
+There is a control shell script with various functions to manage day to day admin of the Gerrit service. This includes snapshotting.</br>
 
 ##Deployment
 
@@ -21,22 +21,22 @@ After around 10 seconds you should be able to access the gerrit server via http:
 ##Backup / Snapshotting / Resoring
 
 Snapshots are automatically taken when you stop the gerrit service. This is to ensure we don't loose any data</br>
-You can use gerrit-pg-ctl.sh to create snapshots on denad of both Postgres and Gerris</br>
+You can use gerrit-pg-ctl.sh to create snapshots on demand</br>
 
 ./gerrit-pg-ctl.sh snapshot</br>
 
-This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots by running</br>
+This will create a snapshot on the local instance with a timestamp. Both PG and Gerret snapshots will have the same timestamp. You can see current snapshots and corrisponding tags byy running</br>
 
 ./gerrit-pg-ctl.sh listsnapshots</br>
 waynec/pg-gerrit-snapshot	2015-10-11214308                 84ab6530248f        20 minutes ago      265.4 MB</br>
 waynec/gerrit-snapshot		2015-10-11214308                 b2bc991843cb        20 minutes ago      413.6 MB</br>
 
 
-You can then restore a snapshot to latest but using the following command
+You can then restore a snapshot tag to latest but using the following command along with a valid timestamp.</br>
 
-./gerrit-pg-ctl.sh restore 2015-10-11233600
+./gerrit-pg-ctl.sh restore 2015-10-11233600</br>
 
-This restores the tag 2015-10-11214308 to latest.
+This restores the tag 2015-10-11214308 to latest.</br>
 
 
 ## Misc
