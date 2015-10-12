@@ -32,7 +32,7 @@ waynec/pg-gerrit-snapshot	2015-10-11214308                 84ab6530248f        2
 waynec/gerrit-snapshot		2015-10-11214308                 b2bc991843cb        20 minutes ago      413.6 MB</br>
 
 
-You can then restore a snapshot tag to latest but using the following command along with a valid timestamp.</br>
+You can then restore a snapshot tag to latest using the following command along with a valid timestamp.</br>
 
 ./gerrit-pg-ctl.sh restore 2015-10-11233600</br>
 
