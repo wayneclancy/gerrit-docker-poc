@@ -57,6 +57,8 @@ listsnapshot:	List all snapshotss</br>
 status:		Checks if local Gerrit service is running on 8080</br>
 restore:        Restores a snapshot to latest and restarts the service (you need to proved a tag timestamp of a availiable image)</br>
 
+This was built on Ubuntu 14.04 using docker 1.8.6. If you have any issues with the rebuild process please check that you are not on a old version of Docker as this will probably be the cause of the problem.
+
 ##Todo
 
 Add error checking and snapshot tar export 
