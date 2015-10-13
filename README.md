@@ -18,7 +18,7 @@ This will build docker-gerrit and docker/libary/postgres locally. Once this is c
 
 After around 10 seconds you should be able to access the gerrit server via http://127.0.0.1:8080</br>
  
-##Backup / Snapshotting / Resoring
+##Backup / Snapshotting / Restoring
 
 Snapshots are automatically taken when you stop the gerrit service. This is to ensure we don't loose any data</br>
 You can use gerrit-pg-ctl.sh to create snapshots on demand</br>
