@@ -29,6 +29,7 @@ restore() {
 	fi 
         docker tag -f  waynec/gerrit-snapshot:$2  waynec/gerrit:latest
         docker tag -f  waynec/pg-gerrit-snapshot:$2 waynec/postgres:latest
+        docker run --volumes-from gerrit_volume -v $(pwd)/backups:/backups waynec/gerrit bash -c "cd /var/gerrit/review_site && rm -rf * && tar xvf /backups/gerrit_data_$2.tar"
 }
 
 getlogs() {
@@ -40,6 +41,9 @@ snapshot() {
        DATE=`date +%Y-%m-%d%H%M%S`
        docker commit -p gerrit waynec/gerrit-snapshot:$DATE
        docker commit -p pg-gerrit waynec/pg-gerrit-snapshot:$DATE
+       # Added data volume snapshot which i totally forgot about 
+       docker run --volumes-from gerrit_volume -v $(pwd)/backups:/backups waynec/gerrit bash -c "cd /var/gerrit/review_site && tar cvf /backups/gerrit_data_$DATE.tar ." 
+       echo "created backup $DATE. To restore please run $0 restore $DATE"
 } 
 
 listsnapshot() {
@@ -60,7 +64,6 @@ status() {
 start() {
         #Start postgres docker
          docker run \
-        --volumes-from gerrit_volume \
          --name pg-gerrit \
 	-p 5432:5432 \
 	-e POSTGRES_USER=gerrit \
@@ -71,6 +74,7 @@ start() {
         sleep 5 
 	#Start gerrit docker
 	docker run \
+        --volumes-from gerrit_volume \
 	--name gerrit \
 	--link pg-gerrit:db \
 	-p 8080:8080 \
