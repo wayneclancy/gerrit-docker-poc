@@ -18,7 +18,7 @@ This will build docker-gerrit and docker/libary/postgres locally. Once this is c
 
 After around 10 seconds you should be able to access the gerrit server via http://127.0.0.1:8080</br>
  
-##Backup / Snapshotting / Resoring
+##Backup / Snapshotting / Restoring
 
 Snapshots are automatically taken when you stop the gerrit service. This is to ensure we don't loose any data</br>
 You can use gerrit-pg-ctl.sh to create snapshots on demand</br>
@@ -32,7 +32,7 @@ waynec/pg-gerrit-snapshot	2015-10-11214308                 84ab6530248f        2
 waynec/gerrit-snapshot		2015-10-11214308                 b2bc991843cb        20 minutes ago      413.6 MB</br>
 
 
-You can then restore a snapshot tag to latest but using the following command along with a valid timestamp.</br>
+You can then restore a snapshot tag to latest using the following command along with a valid timestamp.</br>
 
 ./gerrit-pg-ctl.sh restore 2015-10-11233600</br>
 
@@ -56,6 +56,8 @@ snapshot: 	Creates a timestamp based snapshot</br>
 listsnapshot:	List all snapshotss</br>
 status:		Checks if local Gerrit service is running on 8080</br>
 restore:        Restores a snapshot to latest and restarts the service (you need to proved a tag timestamp of a availiable image)</br>
+
+This was built on Ubuntu 14.04 using docker 1.8.6. If you have any issues with the rebuild process please check that you are not on a old version of Docker as this will probably be the cause of the problem.
 
 ##Todo
 
